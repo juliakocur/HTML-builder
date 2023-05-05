@@ -3,7 +3,7 @@ const path = require('path');
 const {stdin, stdout, exit} = process;
 
 
-stdout.write('Please, enter text\n');
+stdout.write('Please, enter the text\n');
 
 const newFile = fs.createWriteStream(path.join(__dirname, 'news.txt'));
 
