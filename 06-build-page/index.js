@@ -74,6 +74,9 @@ fs.readFile(path.join(__dirname, 'template.html'), 'utf-8', (err, data) => {
           if (dirEntry === 'articles.html') {
             fileContent = fileContent.replace(/\{\{articles\}\}/, data)
           }
+          if (dirEntry === 'about.html') {
+            fileContent = fileContent.replace(/\{\{about\}\}/, data)
+          }
 
           fs.writeFile(path.join(__dirname, 'project-dist', 'index.html'), fileContent, (err) => {
             if (err) throw err;
