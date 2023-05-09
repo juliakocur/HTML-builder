@@ -51,36 +51,30 @@ fs.readdir (path.join(__dirname, 'styles'), {withFileTypes: true}, (error, dirEn
     }
 })
 
-// create index
+
 fs.readFile(path.join(__dirname, 'template.html'), 'utf-8', (err, data) => {
     if (err) throw err;
-    let fileContent = data;
+    let fileContent = data; 
     
-  
+   
     fs.readdir(path.join(__dirname, 'components'), (err, dirEntryList) => {
       if (err) throw err;
+      let i = 0;
       dirEntryList.forEach((dirEntry) => { 
 
-     
+      
         fs.readFile(path.join(__dirname, 'components', dirEntry), 'utf-8', (err, data) => {
           if (err) throw err;
-
-          if (dirEntry === 'header.html') {
-            fileContent = fileContent.replace(/\{\{header\}\}/, data)
-          }
-          if (dirEntry === 'footer.html') {
-            fileContent = fileContent.replace(/\{\{footer\}\}/, data)
-          }
-          if (dirEntry === 'articles.html') {
-            fileContent = fileContent.replace(/\{\{articles\}\}/, data)
-          }
-          if (dirEntry === 'about.html') {
-            fileContent = fileContent.replace(/\{\{about\}\}/, data)
-          }
-
+          let dirEntryName = dirEntry.split('.');
+          
+          fileContent = fileContent.replace(`{{${dirEntryName[0]}}}`, data);
+          i++;
+          
+          if(i === dirEntryList.length) {
           fs.writeFile(path.join(__dirname, 'project-dist', 'index.html'), fileContent, (err) => {
             if (err) throw err;
           })
+        }
         }
         )
     })

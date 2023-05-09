@@ -14,3 +14,4 @@ fs.readdir (path.join(__dirname, 'styles'), {withFileTypes: true}, (error, dirEn
         console.log(error);
     }
 })
+
