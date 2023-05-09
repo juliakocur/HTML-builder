@@ -74,6 +74,7 @@ fs.readFile(path.join(__dirname, 'template.html'), 'utf-8', (err, data) => {
           fs.writeFile(path.join(__dirname, 'project-dist', 'index.html'), fileContent, (err) => {
             if (err) throw err;
           })
+          
         }
         }
         )
